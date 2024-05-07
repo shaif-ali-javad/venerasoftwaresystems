@@ -1,0 +1,40 @@
+  #navbar li {
+    list-style-type: none;
+    color: white;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+  }
+  #navbar #active::after,
+  #navbar li:hover::after {
+    position: absolute;
+    content: "";
+    background-color: #17cf97;
+    width: 30%;
+    height: 2px;
+    bottom: 5px;
+    left: 20px;
+  }
+  #navbar #active,
+  #navbar li {
+    cursor: pointer;
+  }
+  
+  #mobile {
+    display: none;
+  }
+  
+  #mobile i {
+    color: #fff;
+    margin: 21.3px 0;
+  }
+  
+  @media screen and (max-width: 896px) {
+    #mobile {
+      display: block;
+      cursor: pointer;
+    }  
+}
+  
+.link {
+    color: white;
+}
