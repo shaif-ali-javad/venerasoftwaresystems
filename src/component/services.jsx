@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./camera.css"
 import img0 from "../assets/v915-mynt-008-d.jpg";
 
+
+
 const Camera = () => {
   const [url, setUrl] = useState(null);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
