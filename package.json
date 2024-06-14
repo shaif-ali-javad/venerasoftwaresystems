@@ -13,15 +13,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/camera": "^6.0.1",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/filesystem": "^6.0.0",
+    "@capacitor/preferences": "^6.0.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@ionic/react": "^8.2.2",
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
     "gh-pages": "^6.1.1",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-webcam": "^7.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

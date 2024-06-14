@@ -1,67 +1,82 @@
-import { Box, Typography } from '@mui/material'
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
-import React from 'react'
+import React, { useState } from "react";
+import "./camera.css"
+import img0 from "../assets/v915-mynt-008-d.jpg";
 
-import Navbar from './for-all-component/navbar'
+const Camera = () => {
+  const [url, setUrl] = useState(null);
+  const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
+  const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
-function services() {
+  const capturePhoto = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const track = stream.getVideoTracks()[0];
+      const imageCapture = new ImageCapture(track);
+      const photo = await imageCapture.takePhoto();
+      const photoURL = URL.createObjectURL(photo);
+      setUrl(photoURL);
+      track.stop();  // Stop the video stream after capturing the photo
+
+      // Automatically save the photo
+      const link = document.createElement("a");
+      link.href = photoURL;
+      link.download = "captured-photo.png";
+      link.click();
+    } catch (error) {
+      console.error("Error accessing the camera:", error);
+    }
+  };
+
+  const handleClick = (event) => {
+    setClickPosition({ x: event.clientX, y: event.clientY });
+    setIsPhotoTaken(true);
+  };
+
   return (
-    <Box sx={{p:10}}>
-    <Navbar/>
-      <Box>
-        <Typography variant='h1' gutterBottom>
-        SERVICES
-        </Typography>
-        <Typography variant='body1'>
-        Wide breadth of software development, mobile app development, web development and IT consulting services across the entire IT spectrum.
-        </Typography>
-      </Box>
-      <Box sx={{p:10, pb:0}}>
-        <Typography variant='h2' gutterBottom>
-        WE ASSIST STARTUPS, SME'S AND LARGE ENTERPRISES IN MAKING CRITICAL BUSINESS DECISIONS.
-        </Typography>
-        <Typography variant='body1'>
-        Xicom provides a broad range of web application development and offshore software development services to help you harness the power of technology, consulting and maximize your online business investment. Our services address specific needs of enterprise IT programs, communications and Internet technology product development. Client's benefit from seamless coordination across strategy, implementation, and management of their technology programs and from our expertise in focused industries, strong quality orientation, cross-technology expertise, and distributed project management capabilities.
-        </Typography>
-      </Box>
-      <Box sx={{p:10}}>
-        <Typography variant='h2' gutterBottom>
-        OUR DEVELOPMENT PROCESS
-        </Typography>
-        <Typography variant='body1'>
-        We deliver highest level of customer service by deploying innovative and collaborative project management systems to build the most professional, robust and highly scalable web & mobile solutions with highest quality standards.
-        </Typography>
-      </Box>
-      <Box>
-        <Grid2 container spacing={2}>
-            <Grid2 xs={4}>
-                <Typography variant='h3' gutterBottom sx={{fontSize:30}}>
-                POST YOUR PROJECT REQUIREMENTS
-                </Typography>
-                <Typography variant='body1'>
-                Our analysts will thoroughly review your project requirements and select the most experienced developers best suited for your project.
-                </Typography>
-            </Grid2>
-            <Grid2 xs={4}>
-                <Typography variant='h3' gutterBottom sx={{fontSize:30}}>
-                DISCUSS PROJECT DETAILS WITH OUR ANALYSTS
-                </Typography>
-                <Typography variant='body1'>
-                Our experts will contact you within no time to discuss your project related queries and to offer the best solution for your project development.
-                </Typography>
-            </Grid2>
-            <Grid2 xs={4}>
-                <Typography variant='h3' gutterBottom sx={{fontSize:30}}>
-                CHOOSE ENGAGEMENT TERMS & TIMELINES
-                </Typography>
-                <Typography variant='body1'>
-                Based on the project consultation provided by our experts, you can choose the engagement timelines for your project execution.
-                </Typography>
-            </Grid2>
-        </Grid2>
-      </Box>
-    </Box>
-  )
-}
+    <div
+      onClick={handleClick}
+      style={{
+        position: "relative",
+        width: "100vw",
+        height: "100vh",
+        cursor: "crosshair",
+      }}
+    >
+      <button
+        onClick={(e) => {
+          e.stopPropagation();  // Prevent the button click from triggering the handleClick event
+          capturePhoto();
+        }}
+        style={{
+          position: "absolute",
+          top: 20,
+          left: 20,
+          zIndex: 10,
+        }}
+      >
+        Capture photo
+      </button>
 
-export default services
+      {isPhotoTaken && url && (
+        <img
+          src={url}
+          alt="captured"
+          style={{
+            position: "absolute",
+            left: clickPosition.x - 125,  // Adjust to center the image
+            top: clickPosition.y - 125,  // Adjust to center the image
+            width: 250,
+            height: 250,
+            objectFit: "contain",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      )}
+      <div className="gb">
+        <img src={img0} alt="" className="gb-img" />
+      </div>
+    </div>
+  );
+};
+
+export default Camera;
