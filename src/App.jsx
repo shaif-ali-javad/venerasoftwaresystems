@@ -5,7 +5,7 @@ import Home from "./component/home.jsx";
 
 // const About = lazy(() => import("./component/about.jsx"));
 // const Services = lazy(() => import("./component/services.jsx"));
-// const Contact = lazy(() => import("./component/contact.jsx"));
+const Contact = lazy(() => import("./component/contact.jsx"));
 
 
 function App() {
@@ -16,10 +16,10 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
 
-            {/* <Route path="/services" element={<Services />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-             */}
+            {/* <Route path="/services" element={<Services />} /> */}
+            {/* <Route path="/about" element={<About />} /> */}
+            <Route path="/testing" element={<Contact />} />
+            
             {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </Suspense>

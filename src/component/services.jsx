@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./camera.css"
 import img0 from "../assets/v915-mynt-008-d.jpg";
-
+import { Link } from "react-router-dom";
+// import app from "../assets/Vite PWA Project";
 
 
 const Camera = () => {
@@ -58,7 +59,20 @@ const Camera = () => {
       >
         photo
       </button>
-
+      <Link to="/testing"
+      style={{
+        position: "absolute",
+        top: 70,
+        left: 20,
+        zIndex: 10,
+      }}
+      className="link"
+      >
+      testing
+      </Link>
+      {/* <a href={app} download={"app"}>
+        <button>app</button>
+      </a> */}
       {isPhotoTaken && url && (
         <img
           src={url}
