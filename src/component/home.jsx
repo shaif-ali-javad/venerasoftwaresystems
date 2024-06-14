@@ -162,8 +162,8 @@
 
 
 import React from 'react';
-import { Box, Button } from '@mui/material';
-import Lottie from 'lottie-react';
+// import { Box, Button } from '@mui/material';
+// import Lottie from 'lottie-react';
 import Camera from './services';
 
 const Home = () => {
