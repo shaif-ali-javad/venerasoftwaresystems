@@ -56,7 +56,7 @@ const Camera = () => {
           zIndex: 10,
         }}
       >
-        Capture photo
+        photo
       </button>
 
       {isPhotoTaken && url && (

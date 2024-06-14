@@ -3,9 +3,9 @@ import React, { lazy, Suspense } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./component/home.jsx";
 
-const About = lazy(() => import("./component/about.jsx"));
-const Services = lazy(() => import("./component/services.jsx"));
-const Contact = lazy(() => import("./component/contact.jsx"));
+// const About = lazy(() => import("./component/about.jsx"));
+// const Services = lazy(() => import("./component/services.jsx"));
+// const Contact = lazy(() => import("./component/contact.jsx"));
 
 
 function App() {
